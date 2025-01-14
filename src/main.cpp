@@ -1,41 +1,23 @@
-/*
-today I build a data managment solution, similar to a my previous project
-exercise, based on binary search tree.
-      you can use an auxiliary data structure too...
+#include <iostream>
+#include <string>
+#include "includes/bst.hpp"
 
-    supported action: Search/retrieval, Insert, Delete
+using namespace std;
 
-    the tree should be self-balancing
-        what data should you store inside it ?
+// Prototypes des fonctions
+void insert(Node *&root, int data);
+void printTree(Node *root, string indent, bool last);
 
-    for that I code on c++ language and use the following libraries:
-    - iostream
-    - string
-    - vector
-    - algorithm
+int main() {
+    Node *root = NULL;
 
+    // Insertion de plusieurs valeurs dans l'arbre
+    for (int i = 10; i <= 660; i += 10) {
+        insert(root, i);
+    }
 
-    I will use the following data structure:
-    - struct Node
-    - class BST
-    
+    // Affichage de l'arbre
+    printTree(root, "", true);
 
-    FOR THIS PROJECT I CREATE a file name :
-    - main.cpp
-    - bst.h
-    - bst.cpp
-    - node.h
-    - node.cpp
-    - Makefile
-
-    node for the node structure and bst for the binary search tree structure
-    
-    node dois etre un code pour la structure de noeud
-
-    bst dois etre un code pour la structure de l'arbre binaire de recherche
-    
-    on firts step I create a node.h and node.cpp file
-
-
-
-*/
+    return 0;
+}

@@ -1,48 +1,26 @@
-/*
-here we will implement the functions of the class bst  
-here is the hpp file
-il dois contenir les fonctions de la classe bst pour pouvoir les coder ensuite dans le fichier cpp
-
-*/
-
 #ifndef BST_HPP
 #define BST_HPP
 
 #include <iostream>
-#include <string>
-#include <vector>
 #include <algorithm>
+#include <string>
+using namespace std;
 
-
-// struct Node
-struct Node
-{
-    int data;
-    Node *left;
-    Node *right;
-    int height;
+// Structure du noeud
+struct Node {
+    int data;           // Donnée du noeud
+    Node *left;         // Pointeur vers le sous-arbre gauche
+    Node *right;        // Pointeur vers le sous-arbre droit
+    int height;         // Hauteur du noeud
 };
 
-// class BST
-void insert(Node *&root, int data);
-
-void deleteNode(Node *&root, int data);
-
-void printTree(Node *root, std::string indent, bool last);
-
-Node *search(Node *root, int data);
-
-Node *minValueNode(Node *node);
-
-int height(Node *node);
-
-int getBalance(Node *node);
-
-Node *rightRotate(Node *y);
-
-Node *leftRotate(Node *x);
-
+// Fonctions pour manipuler l'arbre
 Node *newNode(int data);
+int height(Node *node);
+int getBalance(Node *node);
+Node *rightRotate(Node *y);
+Node *leftRotate(Node *x);
+void insert(Node *&root, int data);
+void printTree(Node *root, string indent, bool last);
 
-
-#endif // BST_HPP
+#endif
