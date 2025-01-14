@@ -28,6 +28,8 @@ void insert(Node *&root, int data);
 
 void deleteNode(Node *&root, int data);
 
+void printTree(Node *root, std::string indent, bool last);
+
 Node *search(Node *root, int data);
 
 Node *minValueNode(Node *node);
