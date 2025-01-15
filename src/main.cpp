@@ -14,17 +14,18 @@ int main() {
 
     // Search for the year.
     if (bst.search(yearToHighlight)) {
-        cout << "L'année " << yearToHighlight << " a été trouvée dans l'arbre." << endl;
+        cout << "The year " << yearToHighlight << " has been found in the tree." << endl;
     } else {
-        cout << "L'année " << yearToHighlight << " n'est pas dans l'arbre." << endl;
+        cout << "The year " << yearToHighlight << " is not in the tree." << endl;
     }
 
     // Display the tree with the highlighted year.
-    cout << "Arbre binaire de recherche avec l'année " << yearToHighlight << " mise en surbrillance :" << endl;
+    cout << "Binary search tree with the year " << yearToHighlight << "is Highlighting : " << endl;
     bst.display(yearToHighlight);
 
     //Delete a year from the tree.
     bst.Delete_node(bst.root,2023);
-
+    cout << "Binary search tree with the year " << yearToHighlight << "is Highlighting : " << endl;
+    bst.display(yearToHighlight);
     return 0;
 }
