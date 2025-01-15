@@ -10,18 +10,18 @@ Node2::Node2(int val) {
 }
 
 // Méthode d'insertion de noeud
-void Node2::insert_node(int val, int value) {
-    if (val < value) {
+void Node2::insert_node(int val, int node_value) {
+    if (val < node_value) {
         if (left == NULL) {
             left = new Node2(val);
         } else {
-            left->insert_node(val, value);
+            left->insert_node(val, left->value);
         }
-    } else if (val > value) {
+    } else if (val > node_value) {
         if (right == NULL) {
             right = new Node2(val);
         } else {
-            right->insert_node(val,value);
+            right->insert_node(val,right->value);
         }
     }
 }
