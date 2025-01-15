@@ -1,14 +1,14 @@
 #include "Includes/node.hpp"
 
-// Constructeur
+// Constructor
 Node2::Node2(int year) {
     this->year = year;
     this->left = nullptr;
     this->right = nullptr;
-    this->height = 1; // Initialisé à 1 car c'est une nouvelle feuille
+    this->height = 1; // Initialized to 1 because it's a new sheet.
 }
 
-// Affiche la valeur du nœud
+// Display the value of the node.
 void Node2::display_value() {
     cout << "Year: " << year << endl;
 }

@@ -11,7 +11,8 @@ public:
     BST();
     void insert(int year);
     bool search(int year);
-    void display(int highlightYear);  // Déclaration avec un argument pour l'année à surligner
+    void display(int highlightYear);  // Declaration with an argument for the year to highlight.
+    void Delete_node(Node2* node,int yearDelete);
 
 private:
     Node2* insert(Node2* node, int year);
@@ -20,8 +21,7 @@ private:
     Node2* left_rotate(Node2* x);
     int height(Node2* node);
     int get_balance_factor(Node2* node);
-    void display(Node2* node, std::string prefix, bool isLeft, int highlightYear);  // Méthode privée avec 4 arguments
-
+    void display(Node2* node, std::string prefix, bool isLeft, int highlightYear);  // Private method with 4 arguments.
 };
 
 #endif

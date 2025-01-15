@@ -3,23 +3,23 @@
 #include <algorithm>
 using namespace std;
 
-// Constructeur
+// Constructor
 BST::BST() {
     root = nullptr;
 }
 
-// Méthode d'insertion dans l'arbre
+// Insertion method in the tree.
 void BST::insert(int year) {
     root = insert(root, year);
 }
 
-// Méthode de recherche d'une valeur dans l'arbre
+// Search method for a value in the tree.
 bool BST::search(int year) {
     Node2* result = search(root, year);
-    return result != nullptr; // Si le résultat est non nul, la valeur a été trouvée
+    return result != nullptr; // If the result is non-null, the value has been found.
 }
 
-// Méthode privée de recherche récursive
+// Private recursive search method.
 Node2* BST::search(Node2* node, int year) {
     if (node == nullptr || node->year == year) {
         return node;
@@ -30,7 +30,7 @@ Node2* BST::search(Node2* node, int year) {
     return search(node->right, year);
 }
 
-// Méthode privée d'insertion récursive
+// Private recursive insertion method.
 Node2* BST::insert(Node2* node, int year) {
     if (node == nullptr) {
         return new Node2(year);
@@ -63,7 +63,7 @@ Node2* BST::insert(Node2* node, int year) {
     return node;
 }
 
-// Rotation droite
+// Right rotation.
 Node2* BST::right_rotate(Node2* y) {
     Node2* x = y->left;
     Node2* T2 = x->right;
@@ -77,7 +77,7 @@ Node2* BST::right_rotate(Node2* y) {
     return x;
 }
 
-// Rotation gauche
+// Left rotation.
 Node2* BST::left_rotate(Node2* x) {
     Node2* y = x->right;
     Node2* T2 = y->left;
@@ -91,22 +91,22 @@ Node2* BST::left_rotate(Node2* x) {
     return y;
 }
 
-// Calcul de la hauteur d'un nœud
+// Calculating the height of a node.
 int BST::height(Node2* node) {
     return node == nullptr ? 0 : node->height;
 }
 
-// Calcul du facteur d'équilibre d'un nœud
+// Calculating the balance factor of a node.
 int BST::get_balance_factor(Node2* node) {
     return node == nullptr ? 0 : height(node->left) - height(node->right);
 }
 
-// Méthode pour afficher l'arbre avec un nœud à surligner
+// Method to display the tree with a node to highlight.
 void BST::display(int highlightYear) {
-    display(root, "", true, highlightYear);  // Appel avec l'année à surligner
+    display(root, "", true, highlightYear);  // Call with the year to highlight.
 }
 
-// Méthode privée d'affichage avec surlignage
+// Private method for displaying with highlighting.
 void BST::display(Node2* node, string prefix, bool isLeft, int highlightYear) {
     if (node != nullptr) {
         cout << prefix;
@@ -118,7 +118,7 @@ void BST::display(Node2* node, string prefix, bool isLeft, int highlightYear) {
             prefix += "    ";
         }
 
-        // Affichage de l'année avec des crochets si c'est l'année à surligner
+        // Display the year with brackets if it is the year to highlight.
         if (node->year == highlightYear) {
             cout << "[" << node->year << "]" << endl;
         } else {
@@ -127,5 +127,54 @@ void BST::display(Node2* node, string prefix, bool isLeft, int highlightYear) {
 
         display(node->left, prefix, true, highlightYear);
         display(node->right, prefix, false, highlightYear);
+    }
+}
+
+void BST::Delete_node(Node2* node,int yearDelete){
+    if (node == nullptr){
+        cout << "node not find." << endl;
+        return;
+    }else{
+        if (yearDelete == node->year){
+            //if a node don't have child
+            if(node->left == nullptr && node->right == nullptr){
+                delete node;
+                node = nullptr;
+                cout << "the Node is delete." << endl;
+                return;
+            }else{
+            //if node have one child
+            if(node->left == nullptr){
+                Node2* temp = node;
+                node = node->right;
+                delete temp;
+                cout << "The Node with one child is deleted." << endl;
+                return;
+            }else if(node->right == nullptr){
+                Node2* temp = node;
+                node = node->left;
+                delete temp;
+                cout << "The Node with one child is deleted." << endl;
+                return;
+            }
+            //if the node have two children
+            else{
+                Node2* temp = node->right;
+                while (temp->left != nullptr) {
+                    temp = temp->left;
+                }
+                node->year = temp->year;
+                Delete_node(node->right, temp->year);
+                cout << "The Node with two children is replaced and deleted." << endl;
+                return;
+                }
+            }
+        }else{
+            if(yearDelete < node->year){
+                return Delete_node(node->left, yearDelete);
+            }else{
+                return Delete_node(node->right, yearDelete);
+            }
+        }
     }
 }

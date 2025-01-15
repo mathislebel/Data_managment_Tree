@@ -6,15 +6,15 @@ using namespace std;
 
 class Node2 {
 public:
-    int year;           // Données du nœud
-    Node2* left;        // Pointeur vers le sous-arbre gauche
-    Node2* right;       // Pointeur vers le sous-arbre droit
-    int height;         // Hauteur du nœud pour équilibrer l'arbre
+    int year;           // Node data.
+    Node2* left;        // Pointer to the left subtree.
+    Node2* right;       // Pointer to the right subtree.
+    int height;         // Node height for balancing the tree.
 
-    // Constructeur
+    // Constructor
     Node2(int year);
-    // Méthodes auxiliaires (optionnel, dépend des besoins)
-    void display_value(); // Affiche la valeur du nœud
+    // Auxiliary methods (optional, depends on the needs).
+    void display_value(); // Display the value of the node.
 };
 
 #endif
