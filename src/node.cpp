@@ -1,29 +1,32 @@
-#include "Includes/node.hpp" //take file hpp for use it
+#include "includes/node.hpp" // Inclure le fichier d'en-tête
 
 using namespace std;
 
-
-void insert_node(int val, int value){
-    if (val > value){
-        if( right == nullptr){ 
-            right = new Node(val); //on insert a l'enfant droit le nouveau node
-        }
-        else{
-            //rappel la fonction pour faire recursive 
-        }
-    }
-    else{
-        if (left == nullptr){
-            left == ; // on insère à l'enfant gauche le nouveau node
-        }
-        else{
-            //rappel la fonction pour faire une récursive
-        }
-    }
-
+// Constructeur
+Node2::Node2(int val) {
+    value = val;
+    left = NULL;
+    right = NULL;
 }
 
+// Méthode d'insertion de noeud
+void Node2::insert_node(int val, int value) {
+    if (val < value) {
+        if (left == NULL) {
+            left = new Node2(val);
+        } else {
+            left->insert_node(val);
+        }
+    } else if (val > value) {
+        if (right == NULL) {
+            right = new Node2(val);
+        } else {
+            right->insert_node(val);
+        }
+    }
+}
 
-void display_value(){
-    
+// Méthode d'affichage de la valeur
+void Node2::display_value() {
+    cout << value << endl;
 }

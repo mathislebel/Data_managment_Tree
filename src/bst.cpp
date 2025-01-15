@@ -1,4 +1,4 @@
-#include "includes/bst.hpp"
+#include "Includes/bst.hpp"
 
 // Fonction pour insérer une nouvelle clé dans l'arbre BST
 void insert(Node *&root, int data) {
