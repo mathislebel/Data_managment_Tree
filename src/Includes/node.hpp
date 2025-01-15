@@ -16,7 +16,7 @@ class Node2{
         Node2 *right; //pointer to the right subtree
 
         Node2(int val); //constructor
-        void insert_node(int val, int value); //insert a node
+        void insert_node(int val, int node_value); //insert a node
         void display_value(); //display the value of the node
 };
 
