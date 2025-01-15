@@ -13,7 +13,7 @@ int main() {
     Node *root = NULL;
      
     // node creation
-    Node2 *root2 = new Node2(50);
+    Node2 *root2 = new Node2(1);
 
 
 

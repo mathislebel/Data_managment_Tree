@@ -15,13 +15,13 @@ void Node2::insert_node(int val, int value) {
         if (left == NULL) {
             left = new Node2(val);
         } else {
-            left->insert_node(val);
+            left->insert_node(val, value);
         }
     } else if (val > value) {
         if (right == NULL) {
             right = new Node2(val);
         } else {
-            right->insert_node(val);
+            right->insert_node(val,value);
         }
     }
 }
