@@ -16,4 +16,6 @@ public:
     // Méthodes auxiliaires (optionnel, dépend des besoins)
     void display_value(); // Affiche la valeur du nœud
 
+};
+
 #endif
