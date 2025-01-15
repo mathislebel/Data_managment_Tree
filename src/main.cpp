@@ -20,12 +20,10 @@ int main() {
     }
 
     // Display the tree with the highlighted year.
-    cout << "Binary search tree with the year " << yearToHighlight << "is Highlighting : " << endl;
+    cout << "Binary search tree with the year " << yearToHighlight << " is Highlighting : " << endl;
     bst.display(yearToHighlight);
 
     //Delete a year from the tree.
-    bst.Delete_node(bst.root,2023);
-    cout << "Binary search tree with the year " << yearToHighlight << "is Highlighting : " << endl;
-    bst.display(yearToHighlight);
+    bst.Delete_node(bst.root,1900);
     return 0;
 }

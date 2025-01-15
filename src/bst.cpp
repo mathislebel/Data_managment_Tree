@@ -150,7 +150,7 @@ void BST::Delete_node(Node2* node,int yearDelete){
                 delete temp;
                 cout << "The Node with one child is deleted." << endl;
                 return;
-            }else if(node->right == nullptr){
+            }if(node->right == nullptr){
                 Node2* temp = node;
                 node = node->left;
                 delete temp;
