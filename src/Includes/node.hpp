@@ -13,9 +13,7 @@ public:
 
     // Constructeur
     Node2(int year);
-
     // Méthodes auxiliaires (optionnel, dépend des besoins)
     void display_value(); // Affiche la valeur du nœud
-};
 
 #endif
