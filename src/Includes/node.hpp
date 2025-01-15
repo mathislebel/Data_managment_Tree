@@ -1,24 +1,21 @@
-/*
-here is the hpp file that will be used in the node.cpp file
-*/
-
-#ifndef NODE_HPP //avoids redefinition
+#ifndef NODE_HPP
 #define NODE_HPP
 
 #include <iostream>
+using namespace std;
 
-using namespace std; 
+class Node2 {
+public:
+    int year;           // Données du nœud
+    Node2* left;        // Pointeur vers le sous-arbre gauche
+    Node2* right;       // Pointeur vers le sous-arbre droit
+    int height;         // Hauteur du nœud pour équilibrer l'arbre
 
-class Node2{
-    public:
-        int value; //value of the node
-        Node2 *left; //pointer to the left subtree
-        Node2 *right; //pointer to the right subtree
+    // Constructeur
+    Node2(int year);
 
-        Node2(int val); //constructor
-        void insert_node(int val, int value); //insert a node
-        void display_value(); //display the value of the node
+    // Méthodes auxiliaires (optionnel, dépend des besoins)
+    void display_value(); // Affiche la valeur du nœud
 };
-
 
 #endif

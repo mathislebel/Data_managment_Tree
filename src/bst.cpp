@@ -1,68 +1,72 @@
 #include "Includes/bst.hpp"
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
-// Fonction pour insérer une nouvelle clé dans l'arbre BST
-void insert(Node *&root, int data) {
-    if (root == NULL) {
-        root = newNode(data);
-        return;
-    }
-
-    if (data < root->data) {
-        insert(root->left, data);
-    } else if (data > root->data) {
-        insert(root->right, data);
-    }
-
-    // Mise à jour de la hauteur
-    root->height = 1 + max(height(root->left), height(root->right));
-
-    // Vérification du facteur d'équilibre
-    int balance = getBalance(root);
-
-    // Rotation droite
-    if (balance > 1 && data < root->left->data) {
-        root = rightRotate(root);
-    }
-
-    // Rotation gauche
-    if (balance < -1 && data > root->right->data) {
-        root = leftRotate(root);
-    }
-
-    // Double rotation gauche-droite
-    if (balance > 1 && data > root->left->data) {
-        root->left = leftRotate(root->left);
-        root = rightRotate(root);
-    }
-
-    // Double rotation droite-gauche
-    if (balance < -1 && data < root->right->data) {
-        root->right = rightRotate(root->right);
-        root = leftRotate(root);
-    }
+// Constructeur
+BST::BST() {
+    root = nullptr;
 }
 
-// Autres fonctions auxiliaires (inchangées)
-Node *newNode(int data) {
-    Node *node = new Node();
-    node->data = data;
-    node->left = NULL;
-    node->right = NULL;
-    node->height = 1;
+// Méthode d'insertion dans l'arbre
+void BST::insert(int year) {
+    root = insert(root, year);
+}
+
+// Méthode de recherche d'une valeur dans l'arbre
+bool BST::search(int year) {
+    Node2* result = search(root, year);
+    return result != nullptr; // Si le résultat est non nul, la valeur a été trouvée
+}
+
+// Méthode privée de recherche récursive
+Node2* BST::search(Node2* node, int year) {
+    if (node == nullptr || node->year == year) {
+        return node;
+    }
+    if (year < node->year) {
+        return search(node->left, year);
+    }
+    return search(node->right, year);
+}
+
+// Méthode privée d'insertion récursive
+Node2* BST::insert(Node2* node, int year) {
+    if (node == nullptr) {
+        return new Node2(year);
+    }
+
+    if (year < node->year) {
+        node->left = insert(node->left, year);
+    } else if (year > node->year) {
+        node->right = insert(node->right, year);
+    }
+
+    node->height = 1 + max(height(node->left), height(node->right));
+    int balance = get_balance_factor(node);
+
+    if (balance > 1 && year < node->left->year) {
+        return right_rotate(node);
+    }
+    if (balance < -1 && year > node->right->year) {
+        return left_rotate(node);
+    }
+    if (balance > 1 && year > node->left->year) {
+        node->left = left_rotate(node->left);
+        return right_rotate(node);
+    }
+    if (balance < -1 && year < node->right->year) {
+        node->right = right_rotate(node->right);
+        return left_rotate(node);
+    }
+
     return node;
 }
 
-int height(Node *node) {
-    return (node == NULL) ? 0 : node->height;
-}
-
-int getBalance(Node *node) {
-    return (node == NULL) ? 0 : height(node->left) - height(node->right);
-}
-
-Node *rightRotate(Node *y) {
-    Node *x = y->left;
-    Node *T2 = x->right;
+// Rotation droite
+Node2* BST::right_rotate(Node2* y) {
+    Node2* x = y->left;
+    Node2* T2 = x->right;
 
     x->right = y;
     y->left = T2;
@@ -73,9 +77,10 @@ Node *rightRotate(Node *y) {
     return x;
 }
 
-Node *leftRotate(Node *x) {
-    Node *y = x->right;
-    Node *T2 = y->left;
+// Rotation gauche
+Node2* BST::left_rotate(Node2* x) {
+    Node2* y = x->right;
+    Node2* T2 = y->left;
 
     y->left = x;
     x->right = T2;
@@ -86,18 +91,41 @@ Node *leftRotate(Node *x) {
     return y;
 }
 
-void printTree(Node *root, string indent, bool last) {
-    if (root != NULL) {
-        cout << indent;
-        if (last) {
-            cout << "R----";
-            indent += "   ";
-        } else {
+// Calcul de la hauteur d'un nœud
+int BST::height(Node2* node) {
+    return node == nullptr ? 0 : node->height;
+}
+
+// Calcul du facteur d'équilibre d'un nœud
+int BST::get_balance_factor(Node2* node) {
+    return node == nullptr ? 0 : height(node->left) - height(node->right);
+}
+
+// Méthode pour afficher l'arbre avec un nœud à surligner
+void BST::display(int highlightYear) {
+    display(root, "", true, highlightYear);  // Appel avec l'année à surligner
+}
+
+// Méthode privée d'affichage avec surlignage
+void BST::display(Node2* node, string prefix, bool isLeft, int highlightYear) {
+    if (node != nullptr) {
+        cout << prefix;
+        if (isLeft) {
             cout << "L----";
-            indent += "|  ";
+            prefix += "|   ";
+        } else {
+            cout << "R----";
+            prefix += "    ";
         }
-        cout << root->data << endl;
-        printTree(root->left, indent, false);
-        printTree(root->right, indent, true);
+
+        // Affichage de l'année avec des crochets si c'est l'année à surligner
+        if (node->year == highlightYear) {
+            cout << "[" << node->year << "]" << endl;
+        } else {
+            cout << node->year << endl;
+        }
+
+        display(node->left, prefix, true, highlightYear);
+        display(node->right, prefix, false, highlightYear);
     }
 }
