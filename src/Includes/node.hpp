@@ -15,6 +15,7 @@ public:
     Node2(int year);
     // Auxiliary methods (optional, depends on the needs).
     void display_value(); // Display the value of the node.
+
 };
 
 #endif
