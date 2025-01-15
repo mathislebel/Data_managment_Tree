@@ -1,26 +1,27 @@
 #ifndef BST_HPP
 #define BST_HPP
 
-#include <iostream>
-#include <algorithm>
+#include "node.hpp"
 #include <string>
-using namespace std;
 
-// Structure du noeud
-struct Node {
-    int data;           // Donnée du noeud
-    Node *left;         // Pointeur vers le sous-arbre gauche
-    Node *right;        // Pointeur vers le sous-arbre droit
-    int height;         // Hauteur du noeud
+class BST {
+public:
+    Node2* root;
+
+    BST();
+    void insert(int year);
+    bool search(int year);
+    void display(int highlightYear);  // Déclaration avec un argument pour l'année à surligner
+
+private:
+    Node2* insert(Node2* node, int year);
+    Node2* search(Node2* node, int year);
+    Node2* right_rotate(Node2* y);
+    Node2* left_rotate(Node2* x);
+    int height(Node2* node);
+    int get_balance_factor(Node2* node);
+    void display(Node2* node, std::string prefix, bool isLeft, int highlightYear);  // Méthode privée avec 4 arguments
+
 };
-
-// Fonctions pour manipuler l'arbre
-Node *newNode(int data);
-int height(Node *node);
-int getBalance(Node *node);
-Node *rightRotate(Node *y);
-Node *leftRotate(Node *x);
-void insert(Node *&root, int data);
-void printTree(Node *root, string indent, bool last);
 
 #endif

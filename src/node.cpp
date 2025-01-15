@@ -1,32 +1,14 @@
-#include "includes/node.hpp" // Inclure le fichier d'en-tête
-
-using namespace std;
+#include "Includes/node.hpp"
 
 // Constructeur
-Node2::Node2(int val) {
-    value = val;
-    left = NULL;
-    right = NULL;
+Node2::Node2(int year) {
+    this->year = year;
+    this->left = nullptr;
+    this->right = nullptr;
+    this->height = 1; // Initialisé à 1 car c'est une nouvelle feuille
 }
 
-// Méthode d'insertion de noeud
-void Node2::insert_node(int val, int node_value) {
-    if (val < node_value) {
-        if (left == NULL) {
-            left = new Node2(val);
-        } else {
-            left->insert_node(val, left->value);
-        }
-    } else if (val > node_value) {
-        if (right == NULL) {
-            right = new Node2(val);
-        } else {
-            right->insert_node(val,right->value);
-        }
-    }
-}
-
-// Méthode d'affichage de la valeur
+// Affiche la valeur du nœud
 void Node2::display_value() {
-    cout << value << endl;
+    cout << "Year: " << year << endl;
 }

@@ -1,29 +1,27 @@
-#include <iostream>
-#include <string>
 #include "Includes/bst.hpp"
 #include "Includes/node.hpp"
 
-using namespace std;
-
-// Prototypes des fonctions
-void insert(Node *&root, int data);
-void printTree(Node *root, string indent, bool last);
-
 int main() {
-    Node *root = NULL;
-     
-    // node creation
-    Node2 *root2 = new Node2(1);
+    BST bst;
 
-
-
-    // Insertion de plusieurs valeurs dans l'arbre
-    for (int i = 10; i <= 660; i += 10) {
-        insert(root, i);
+    // Insertion des années de 1900 à 2025
+    for (int year = 1900; year <= 2025; ++year) {
+        bst.insert(year);
     }
 
-    // Affichage de l'arbre
-    printTree(root, "", true);
+    // Choisir une année à surligner
+    int yearToHighlight = 1930;
+
+    // Recherche de l'année
+    if (bst.search(yearToHighlight)) {
+        cout << "L'année " << yearToHighlight << " a été trouvée dans l'arbre." << endl;
+    } else {
+        cout << "L'année " << yearToHighlight << " n'est pas dans l'arbre." << endl;
+    }
+
+    // Affichage de l'arbre avec l'année surlignée
+    cout << "Arbre binaire de recherche avec l'année " << yearToHighlight << " mise en surbrillance :" << endl;
+    bst.display(yearToHighlight);
 
     return 0;
 }
